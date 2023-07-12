@@ -1,4 +1,6 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import IssueList from "./pages/IssueList";
+import IssueDetail from "./pages/IssueDetail";
 import Header from "./pages/components/Header";
 import githubContext from "./contexts/Context";
 
@@ -10,7 +12,12 @@ function App() {
                 repo: "react",
             }}>
             <Header />
-            <IssueList />
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<IssueList />}/>
+                    <Route path="/detail/:issueNumber" element={<IssueDetail />}/>
+                </Routes>
+            </BrowserRouter>
         </githubContext.Provider>
     );
 }

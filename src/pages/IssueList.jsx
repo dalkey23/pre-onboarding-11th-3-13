@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import { apiRequest } from '../api/api'
+import { Link } from 'react-router-dom';
+import { apiRequest } from '../api/api';
 import githubContext from "../contexts/Context";
 
 function IssueList() {
@@ -17,17 +18,19 @@ function IssueList() {
     }, []);
 
     return (
-        <>
-            
+        <>         
             {issues.map((issue) => {
                 return (
-                    <ul key={issue.id}>
-                        <li>{issue.number}</li>
-                        <li>{issue.title}</li>
-                        <li>{issue.user.login}</li>
-                        <li>{issue.created_at}</li>
-                        <li>{issue.comments}</li>
-                    </ul>
+                    <Link to={`/detail/${issue.number}`} key={issue.id}>
+                        <ul>
+                            <li>{issue.number}</li>
+                            <li>{issue.title}</li>
+                            <li>{issue.user.login}</li>
+                            <li>{issue.created_at}</li>
+                            <li>{issue.comments}</li>
+                        </ul>
+                        <hr />
+                    </Link>
                 );
             })}
         </>
