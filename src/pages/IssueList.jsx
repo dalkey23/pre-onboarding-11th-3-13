@@ -8,7 +8,7 @@ function IssueList() {
     const value = useContext(githubContext);
 
     useEffect(() => {
-        apiRequest(`repos/${value.owner}/${value.repo}/issues`, "get")
+        apiRequest(`repos/${value.owner}/${value.repo}/issues?sort=comments`, "get")
             .then((res) => {
                 setIssues(res.data);
             })
